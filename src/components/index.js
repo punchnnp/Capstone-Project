@@ -4,6 +4,7 @@ import ShoeCard from "./ShoeCard";
 import PopularProductCard from "./PopularProductCard";
 import ServiceCard from "./ServiceCard";
 import ReviewCard from "./ReviewCard";
+import ModalUpload from "./modalUpload"
 
 export {
     Button,
@@ -12,4 +13,5 @@ export {
     PopularProductCard,
     ServiceCard,
     ReviewCard,
+    ModalUpload,
 }
