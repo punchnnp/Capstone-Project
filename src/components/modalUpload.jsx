@@ -27,7 +27,7 @@ const ModalUpload = ({ isVisible, onClose}) => {
                         {imageUrl && (
                             <img src={imageUrl} />
                         )}
-                    <button className="w-full text-white bg-primary-text text-center rounded-lg font-montserrat h-[40px]">Upload</button> 
+                    <button className="w-full text-white bg-primary-text text-center rounded-lg font-montserrat h-[40px] text-semibold">Upload</button> 
                 </div>    
             </div>
         </div>
