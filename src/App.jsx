@@ -1,4 +1,4 @@
-import { Nav } from "./components";
+import { Nav, ModalUpload } from "./components";
 import {
   CustomerReviews,
   Footer,
@@ -12,13 +12,13 @@ import {
 
 const App = () => {
   return (
-    <main className='relative'>
+    <main className='relative bg-background'>
       <Nav />
       <section className='xl:padding-l wide:padding-r padding-b'>
         <Hero />
       </section>
-      {/*
-      <section className='padding'>
+      
+      {/* <section className='padding'>
         <PopularProducts />
       </section>
       <section className='padding'>
@@ -35,11 +35,11 @@ const App = () => {
       </section>
       <section className='padding-x sm:py-32 py-16 w-full'>
         <Subscribe />
-      </section>
-      <section className=' bg-black padding-x padding-t pb-8'>
+      </section> */}
+      {/* <section className=' bg-black padding-x padding-t pb-8'>
         <Footer />
-      </section>
-     */}
+      </section> */}
+    
     </main>
   );
 };
