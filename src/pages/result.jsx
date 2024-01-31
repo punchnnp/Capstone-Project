@@ -1,8 +1,15 @@
+import {
+    ShowResult
+  } from "../sections";
+
 const Result = () => {
     return (
-        <div>
-            Result
-        </div>
+        <main className='relative bg-background'>
+            <section className='xl:padding-l wide:padding-r padding-b'>
+                <ShowResult />
+            </section>
+        </main>
+
     );
 };
 
