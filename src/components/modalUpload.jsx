@@ -23,7 +23,7 @@ const ModalUpload = ({ isVisible, onClose}) => {
             <div className="w-[600px] justify-center">
                 <div className="w-full bg-white rounded-lg shadow-md items-center px-4 py-4 space-y-4">
                     <button className="w-full place-items-end text-end text-[20px] font-montserrat" onClick={() => onClose()}>X</button>
-                    <input type="file" accept="image/*" onChange={onImageChange}/>
+                    <input type="file" className="file:bg-gradient-to-b file:from-orange-300 file:to-orange-400 file:px-4 file:py-4 file:border-none file:rounded-full file:text-white file:font-montserrat font-montserrat px-2 border-none" accept="image/*" onChange={onImageChange}/>
                         {imageUrl && (
                             <img src={imageUrl} />
                         )}

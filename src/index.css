@@ -25,6 +25,14 @@
 }
 
 @layer utilities {
+  .box::before {
+    @apply content-[''] text-white font-montserrat absolute bg-gradient-to-r from-blue-500 to-red-500 w-[300px] h-[300px]
+  }
+
+  .box::after {
+    @apply content-['1234'] text-white
+  }
+
   .padding {
     @apply sm:px-16 px-8 sm:py-24 py-12;
   }
