@@ -53,15 +53,6 @@ const ModalUpload = ({ isVisible, onClose }) => {
         <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
             <div className="w-[600px] justify-center">
                 <div className="w-full bg-white rounded-lg shadow-md items-center px-4 py-4 space-y-4">
-<<<<<<< Updated upstream
-                    <button className="w-full place-items-end text-end text-[20px] font-montserrat" onClick={() => onClose()}>X</button>
-                    <input type="file" accept="image/*" onChange={onImageChange}/>
-                        {imageUrl && (
-                            <img src={imageUrl} />
-                        )}
-                    <button className="w-full text-white bg-primary-text text-center rounded-lg font-montserrat h-[40px] text-semibold">Upload</button> 
-                </div>    
-=======
                     <div className="w-full flex justify-end">
                         <div onClick={() => onClose()}>
                             <img className="w-[20px] h-[20px]" src={close} />
@@ -104,7 +95,6 @@ const ModalUpload = ({ isVisible, onClose }) => {
                     <button onClick={() => navigate("/load")} className="w-full text-white bg-primary-text text-center rounded-lg font-montserrat h-[40px] text-semibold">Search</button>
                 </div>
 
->>>>>>> Stashed changes
             </div>
         </div>
 
