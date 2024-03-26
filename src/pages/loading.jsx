@@ -1,8 +1,14 @@
+import { LoadingSection } from "../sections";
+import { Nav } from "../components";
+
 const Loading = () => {
     return (
-        <div>
-            <h1>Loading Page</h1>
-        </div>
+        <main className='relative h-full bg-background'>
+            <Nav />
+            <section className='xl:padding-l wide:padding-r padding-b'>
+                <LoadingSection />
+            </section>
+        </main>
     );
 };
 

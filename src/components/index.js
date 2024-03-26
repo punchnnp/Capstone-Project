@@ -6,6 +6,7 @@ import ServiceCard from "./ServiceCard";
 import ReviewCard from "./ReviewCard";
 import ModalUpload from "./modalUpload"
 import DropDown from "./dropdown";
+import RecordNotFound from "./recordNotFound";
 
 export {
     Button,
@@ -15,5 +16,6 @@ export {
     ServiceCard,
     ReviewCard,
     ModalUpload,
-    DropDown
+    DropDown,
+    RecordNotFound
 }

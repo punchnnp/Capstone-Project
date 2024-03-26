@@ -7,6 +7,8 @@ import CustomerReviews from "./CustomerReviews";
 import Subscribe from "./Subscribe";
 import Footer from "./Footer";
 import ShowResult from "./ShowResult";
+import LoadingSection from "./loading"
+import Result2 from "./result";
 
 export {
     Hero,
@@ -17,5 +19,7 @@ export {
     CustomerReviews,
     Subscribe,
     Footer,
-    ShowResult
+    ShowResult,
+    LoadingSection,
+    Result2
 }
