@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, ModalUpload } from "../components";
+import { ModalUpload } from "../components";
 import { arrowRight } from "../assets/icons";
 import CheckMarkIcon from "../assets/icons/check-mark.svg";
 // Import videos
