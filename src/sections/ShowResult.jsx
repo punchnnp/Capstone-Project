@@ -12,10 +12,10 @@ import video5 from "../assets/videos/video5.mp4";
 const ShowResult = () => {
   const [showModal, setShowModal] = useState(false);
 
-  const videoFiles = [video1, video2, video3, video4, video5];
+  const videoFiles = [video1, video2, video3, video4, video5, video5, video5];
 
   return (
-    <section className='w-full flex flex-col items-center gap-10 bg-blur max-container'>
+    <section className='w-full flex xl:flex-row flex-col justify-start min-h-screen gap-10 max-container'>
       <div className='relative w-full flex flex-col justify-center items-center p-8 bg-white shadow-lg'>
         <h2 className='text-xl font-montserrat text-primary-text mb-6'>
           Select a Video

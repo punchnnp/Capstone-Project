@@ -14,6 +14,7 @@
     "@ffmpeg/ffmpeg": "^0.11.5",
     "@ffmpeg/util": "^0.12.1",
     "@material-tailwind/react": "^2.1.9",
+    "axios": "^1.6.8",
     "antd": "^5.4.4",
     "ffmpeg": "^0.0.4",
     "react": "^18.2.0",

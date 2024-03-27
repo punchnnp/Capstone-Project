@@ -21,7 +21,7 @@ const Hero = () => {
 
         <h1 className='mt-10 font-palanquin text-8xl max-sm:text-[72px] max-sm:leading-[82px] font-bold'>
           <span className='xl:whitespace-nowrap relative text-black inline-block mt-3'>
-            <span className="text-primary-text">Greate</span> moment
+            <span className="text-primary-text">Greate</span> Moment
           </span>
           <br />
           <span className='xl:whitespace-nowrap relative inline-block mt-3'>
@@ -32,7 +32,7 @@ const Hero = () => {
           </span>
         </h1>
         <p className='font-montserrat text-slate-gray text-lg leading-8 mt-6 mb-14 sm:max-w-sm'>
-          Capture all of your precious moments!      Upload your face picture here
+          Capture all of your precious moments!
         </p>
 
         <button className="flex justify-center items-center gap-2 px-8 py-4 border font-montserrat text-lg leading-none bg-primary-text text-white border-coral-red rounded-full"
@@ -47,30 +47,6 @@ const Hero = () => {
         </button>
         <ModalUpload isVisible={showModal} onClose={() => setShowModal(false)}/>
       </div>
-      {/* 
-      <div className='relative flex-1 flex justify-center items-center xl:min-h-screen max-xl:py-40 bg-primary bg-hero bg-cover bg-center'>
-        <img
-          src={bigShoeImg}
-          alt='shoe colletion'
-          width={610}
-          height={502}
-          className='object-contain relative z-10'
-        />
-
-        <div className='flex sm:gap-6 gap-4 absolute -bottom-[5%] sm:left-[10%] max-sm:px-6'>
-          {shoes.map((image, index) => (
-            <div key={index}>
-              <ShoeCard
-                index={index}
-                imgURL={image}
-                changeBigShoeImage={(shoe) => setBigShoeImg(shoe)}
-                bigShoeImg={bigShoeImg}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-      */}
     </section>
   );
 };

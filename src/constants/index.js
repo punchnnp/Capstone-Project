@@ -205,7 +205,7 @@ export const faculties = [
                 curriculum: ["Biomedical Engineering (International program)"]
             },
             {
-                name: "School of International and Interdisciplinart Engineering Programs (SIIE)",
+                name: "School of International and Interdisciplinary Engineering Programs (SIIE)",
                 curriculum: ["Mechanical Engineering (International program)", "Electrical Engineering (International program)", "Engineering and Technology Management (International program)", "Computer Innovation Engineering (International program)", "Energy Engineering (International program)"]
             }
         ]

@@ -1,37 +1,24 @@
 import { useEffect, useState } from "react";
-import { faculties, years} from "../constants";
+import { faculties, years } from "../constants";
 import { close } from "../assets/icons";
 import { useNavigate } from "react-router-dom";
+import { document } from "postcss";
 
 const ModalUpload = ({ isVisible, onClose }) => {
     if (!isVisible) return null;
 
     const navigate = useNavigate();
 
-    const [images, setImages] = useState([]);
-    const [imageUrl, setImageUrl] = useState([]);
-    const [selectOption, setSelectOption] = useState(null);
-    const [selectOption2, setSelectOption2] = useState(null);
-
-    const [year, setYear] = useState("--Select Academic Year--");
-    const [faculty, setFaculty] = useState("--Select Faculty--");
-    const [department, setDepartment] = useState("--Select Department--");
-    const [curriculum, setCurriculum] = useState("--Select Curriculum--");
+    const [year, setYear] = useState("");
+    const [faculty, setFaculty] = useState("");
+    const [department, setDepartment] = useState("");
+    const [curriculum, setCurriculum] = useState("");
     const [departments, setDepartments] = useState([]);
     const [curriculums, setCurriculums] = useState([]);
-
-    useEffect(() => {
-        if (images.length < 1) return;
-        const newImageUrl = [];
-        images.forEach(image => newImageUrl.push(URL.createObjectURL(image)));
-        setImageUrl(newImageUrl);
-    }, [images]);
-
-    function onImageChange(e) {
-        setImages([...e.target.files])
-    }
+    const [videoFiles, setVideoFiles] = useState([]);
 
     function yearChange(e) {
+        // formValue.year = e.target.value;
         setYear(e.target.value)
     }
 
@@ -49,6 +36,38 @@ const ModalUpload = ({ isVisible, onClose }) => {
         setCurriculum(e.target.value);
     }
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const formValue = { "Uni": "KMITL", "Year": year, "Faculty": faculty, "Department": department, "Curriculum": curriculum }
+        const uni = "KMITL"
+        console.log(formValue);
+        // navigate("/load")
+        // setDisabled('submitted');
+        try {
+            const response = await fetch('http://localhost:3001/search', {
+                method: 'POST',
+                // mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formValue),
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            console.log('Received data from the server:', data);
+
+            navigate("/result", { state: { videoFiles: data, uni: "KMITL", year: year, faculty: faculty, department: department, curriculum: curriculum } });
+
+            setVideoFiles(data.videoFiles || []);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        } finally {
+
+        }
+    }
+
     return (
         <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
             <div className="w-[600px] justify-center">
@@ -58,10 +77,10 @@ const ModalUpload = ({ isVisible, onClose }) => {
                             <img className="w-[20px] h-[20px]" src={close} />
                         </div>
                     </div>
-                    <div className="flex flex-col gap-y-[8px]">
+                    <form className="flex flex-col gap-y-[8px]" onSubmit={handleSubmit}>
                         <div className="flex w-full gap-[4px] flex-col font-montserrat"> Academic Year
                             <select onChange={yearChange} value={year} className="form-control border-solid border-gray-300 border-[1px] px-4 py-2 w-full rounded-[8px] font-montserrat shadow-sm gap-[4px] w-[200px]">
-                                <option className="hidden">--Select Academic Year--</option>
+                                <option hidden>--Select Academic Year--</option>
                                 {years.map((value) => (
                                     <option value={value}>{value}</option>
                                 ))}
@@ -69,7 +88,7 @@ const ModalUpload = ({ isVisible, onClose }) => {
                         </div>
                         <div className="flex gap-[4px] flex-col font-montserrat"> Faculty
                             <select onChange={facultyChange} value={faculty} className="form-control border-solid border-gray-300 border-[1px] px-4 py-2 w-full rounded-[8px] font-montserrat shadow-sm gap-[4px] w-[200px]">
-                                <option className="hidden" >--Faculty--</option>
+                                <option className="hidden" >--Select Faculty--</option>
                                 {faculties.map((fct) => (
                                     <option value={fct.name}>{fct.name}</option>
                                 ))}
@@ -77,7 +96,7 @@ const ModalUpload = ({ isVisible, onClose }) => {
                         </div>
                         <div className="flex gap-[4px] flex-col font-montserrat"> Department
                             <select onChange={departmentChange} value={department} className="form-control border-solid border-gray-300 border-[1px] px-4 py-2 w-full rounded-[8px] font-montserrat shadow-sm gap-[4px] w-[200px]">
-                                <option className="hidden" >--Department--</option>
+                                <option className="hidden" >--Select Department--</option>
                                 {departments.map(dpt => (
                                     <option value={dpt.name}>{dpt.name}</option>
                                 ))}
@@ -85,14 +104,19 @@ const ModalUpload = ({ isVisible, onClose }) => {
                         </div>
                         <div className="flex gap-[4px] flex-col font-montserrat"> Curriculum
                             <select onChange={curriculumChange} value={curriculum} className="form-control border-solid border-gray-300 border-[1px] px-4 py-2 w-full rounded-[8px] font-montserrat shadow-sm gap-[4px] w-[200px]">
-                                <option className="hidden" >--Curriculum--</option>
+                                <option className="hidden" >--Select Curriculum--</option>
                                 {curriculums.map(crc => (
                                     <option value={crc}>{crc}</option>
                                 ))}
                             </select>
                         </div>
-                    </div>
-                    <button onClick={() => navigate("/load")} className="w-full text-white bg-primary-text text-center rounded-lg font-montserrat h-[40px] text-semibold">Search</button>
+                    </form>
+                    <button
+                        disabled={year.length === 0 || faculty.length === 0 || department.length === 0 || curriculum.length === 0}
+                        onClick={handleSubmit}
+                        className="w-full text-white bg-primary-text text-center rounded-lg font-montserrat h-[40px] text-semibold disabled:opacity-50">
+                        Search
+                    </button>
                 </div>
 
             </div>
