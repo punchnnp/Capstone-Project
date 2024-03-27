@@ -11,7 +11,7 @@ import {
   SuperQuality,
 } from "./sections";
 
-import { Home, Loading, Result } from "./pages";
+import { Home, Loading, Result, Edit, Test } from "./pages";
 
 const App = () => {
   return (
@@ -50,6 +50,8 @@ const App = () => {
           <Route index element={<Home />}/>
           <Route path="/load" element={<Loading />} />
           <Route path="/result" element={<Result />} />
+          <Route path="/edit" element={<Edit />} />
+          <Route path="/test" element={<Test />} />
         </Routes>
       </BrowserRouter>
     </main>
