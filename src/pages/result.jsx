@@ -1,4 +1,4 @@
-import { ShowResult, Result2 } from "../sections";
+import { Result2 } from "../sections";
 import { Nav } from "../components";
 
 const Result = () => {
@@ -7,7 +7,6 @@ const Result = () => {
             <Nav />
             <section className='xl:padding-l wide:padding-r padding-b'>
                 <Result2 />
-                {/* <ShowResult /> */}
             </section>
         </main>
 

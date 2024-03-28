@@ -15,6 +15,7 @@ import chevronDown from './chevron-down.svg'
 import close from './close.svg'
 import video from './video.svg'
 import arrowRightNext from './arrow-right-next.svg'
+import checkCircle from './check-circle.svg'
 
 export {
     arrowRight,
@@ -33,5 +34,6 @@ export {
     truckFast,
     twitter,
     close,
-    video
+    video,
+    checkCircle
 }

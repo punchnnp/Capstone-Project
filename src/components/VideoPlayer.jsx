@@ -4,8 +4,8 @@ import { useEffect, useState } from "react"
 
 export function VideoPlayer({
     src,
-    onPlayerChange = () => {},
-    onChange = () => {},
+    onPlayerChange = () => { },
+    onChange = () => { },
     startTime = undefined,
 }) {
     const [player, setPlayer] = useState(undefined)
@@ -15,7 +15,7 @@ export function VideoPlayer({
         if (playerState) {
             onChange(playerState)
         }
-    }, [playerState]) 
+    }, [playerState])
 
     useEffect(() => {
         onPlayerChange(player)
@@ -26,12 +26,14 @@ export function VideoPlayer({
     }, [player])
 
     return (
-        <div className={"video-player"}>
+        <div className="video-player border rounded-lg overflow-hidden object-cover"  style={{ width: "700px", height: "auto" }}>
             <Player
                 ref={(player) => {
                     setPlayer(player)
                 }}
                 startTime={startTime}
+                // width="100px" 
+                // height="80px"
             >
                 <source src={src} />
                 <BigPlayButton position="center" />

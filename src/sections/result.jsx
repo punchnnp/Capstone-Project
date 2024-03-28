@@ -7,11 +7,13 @@ import video4 from "../assets/videos/video4.mp4";
 import video5 from "../assets/videos/video5.mp4";
 import { arrowRight, arrowLeft, arrowRightNext } from "../assets/icons";
 import { RecordNotFound } from "../components";
+import { useNavigate } from "react-router-dom";
 
 const Result2 = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     console.log("state", location.state)
-    const videoFiles = location.state.videoFiles.Videos.map((id) => ({ id: id, src: `http://localhost:3001/video/${id}` }));
+    const videoFiles = location.state.videoFiles.Videos.map((id) => ({ id: id, src: `http://localhost/api/video/${id}` }));
     console.log(videoFiles)
 
     const [selectedVideo, setSelectedVideo] = useState(null);
@@ -23,6 +25,7 @@ const Result2 = () => {
 
     const handleNextButtonClick = () => {
         if (selectedVideo !== null) {
+            navigate("/edit", {state: {videoId: selectedVideo}})
             console.log("Selected video:", selectedVideo);
 
         }
@@ -69,37 +72,12 @@ const Result2 = () => {
                 </div>
                 <h1 className="font-montserrat text-primary-text font-semibold text-2xl">Select a video</h1>
             </div>
-            {/* <div className="flex relative flex-wrap justify-center items-center p-4">
-                <div className="flex flex-wrap justify-center items-center gap-4">
-                    {videoFiles.length > 0 ? videoFiles.map((video) => (
-                        <div key={video.id} className="flex gap-x-2 w-[308px] h-60 rounded-[4px]">
-                            <input
-                                type="checkbox"
-                                className=" w-[20px] h-[20px] rounded-[4px] border-2 border-gray-400 checked:bg-blue-500 checked:border-transparent focus:outline-none"
-                                checked={video.id === selectedVideo}
-                                // value={videoCheck}
-                                onChange={() => handleCheckboxChange(video.id)}
-                            />
-                            <video
-                                controls
-                                className='flex overflow-hidden object-cover w-full h-full rounded-lg'
-                            >
-                                <source src={video.src} type="video/mp4" />
-                                Your browser does not support the video tag.
-                            </video>
-
-                        </div>
-                    )) :
-                        <RecordNotFound />
-                    }
-                </div>
-            </div> */}
             <div className="flex flex-wrap justify-center items-center gap-4 p-4">
                 {currentVideos.length > 0 ? (
                     currentVideos.map((video) => (
                         <div key={video.id} className="flex gap-x-2 w-[308px] h-60 rounded-[4px]">
                             <input
-                                type="checkbox"
+                                type="radio"
                                 className=" w-[20px] h-[20px] rounded-[4px] border-2 border-gray-400 checked:bg-blue-500 checked:border-transparent focus:outline-none"
                                 checked={video.id === selectedVideo}
                                 // value={videoCheck}

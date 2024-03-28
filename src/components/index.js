@@ -7,6 +7,8 @@ import ReviewCard from "./ReviewCard";
 import ModalUpload from "./modalUpload"
 import DropDown from "./dropdown";
 import RecordNotFound from "./recordNotFound";
+import VideoEditor from "./VideoEditor"
+import ModalSuccess from "./modalSuccess";
 
 export {
     Button,
@@ -17,5 +19,7 @@ export {
     ReviewCard,
     ModalUpload,
     DropDown,
-    RecordNotFound
+    RecordNotFound,
+    VideoEditor,
+    ModalSuccess
 }

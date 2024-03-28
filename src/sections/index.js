@@ -6,7 +6,6 @@ import SpecialOffer from "./SpecialOffer";
 import CustomerReviews from "./CustomerReviews";
 import Subscribe from "./Subscribe";
 import Footer from "./Footer";
-import ShowResult from "./ShowResult";
 import LoadingSection from "./loading"
 import Result2 from "./result";
 
@@ -19,7 +18,6 @@ export {
     CustomerReviews,
     Subscribe,
     Footer,
-    ShowResult,
     LoadingSection,
     Result2
 }

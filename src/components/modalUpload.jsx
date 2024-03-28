@@ -44,7 +44,7 @@ const ModalUpload = ({ isVisible, onClose }) => {
         // navigate("/load")
         // setDisabled('submitted');
         try {
-            const response = await fetch('http://localhost:3001/search', {
+            const response = await fetch('http://localhost/api/search', {
                 method: 'POST',
                 // mode: 'no-cors',
                 headers: {

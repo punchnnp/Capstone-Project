@@ -10,9 +10,9 @@ function VideoConversionButton({
     sliderValues,
     videoFile,
     ffmpeg,
-    onConversionStart = () => {},
-    onConversionEnd = () => {},
-    onGifCreated = () => {},
+    onConversionStart = () => { },
+    onConversionEnd = () => { },
+    onGifCreated = () => { },
 }) {
     const [text, setText] = useState(""); // State to store the input text
     const [fontSize, setFontSize] = useState(36); // State to store the font size
@@ -90,37 +90,53 @@ function VideoConversionButton({
     }
 
     return (
-        <>
-            <Input
-                placeholder="Enter text"
-                value={text}
-                onChange={(e) => setText(e.target.value)} // Update the text state onChange
-            />
-            <Select defaultValue="36" onChange={handleFontSizeChange}>
-                <Option value="24">24</Option>
-                <Option value="36">36</Option>
-                <Option value="48">48</Option>
-            </Select>
-            <Select defaultValue="black" onChange={handleFontColorChange}>
-                <Option value="black">Black</Option>
-                <Option value="red">Red</Option>
-                <Option value="blue">Blue</Option>
-                <Option value="purple">Purple</Option>
-                <Option value="pink">Pink</Option>
-                <Option value="gold">Gold</Option>
-                <Option value="silver">Silver</Option>
-            </Select>
-
-            <Select defaultValue="none" onChange={handleFilterEffectChange}>
-                <Option value="none">No Filter</Option>
-                <Option value="vintage">Vintage</Option>
-                <Option value="hdr">HDR</Option>
-                <Option value="vignette">Vignette</Option>
-                <Option value="cinematic">Cinematic</Option>
-                <Option value="blackandwhite">Black and White</Option>
-            </Select>
-            <Button onClick={() => convertToGif()}>Convert to GIF</Button>
-        </>
+        <div className="flex flex-col p-4 gap-4">
+            <div className="flex flex-col gap-2">
+                <p className="font-montserrat text-l">Add Subtitle</p>
+                <Input
+                    placeholder="Enter text"
+                    value={text}
+                    onChange={(e) => setText(e.target.value)} // Update the text state onChange
+                    className="font-montserrat"
+                />
+            </div>
+            <div className="flex flex-rows gap-4">
+                <div className="grow flex flex-col gap-2">
+                    <p className="font-montserrat text-l">Font size</p>
+                    <Select className="font-montserrat" defaultValue="36" onChange={handleFontSizeChange}>
+                        <Option value="24">24</Option>
+                        <Option value="36">36</Option>
+                        <Option value="48">48</Option>
+                    </Select>
+                </div>
+                <div className="grow flex flex-col gap-2">
+                    <p className="font-montserrat text-l">Font color</p>
+                    <Select className="font-montserrat" defaultValue="black" onChange={handleFontColorChange}>
+                        <Option value="black">Black</Option>
+                        <Option value="red">Red</Option>
+                        <Option value="blue">Blue</Option>
+                        <Option value="purple">Purple</Option>
+                        <Option value="pink">Pink</Option>
+                        <Option value="gold">Gold</Option>
+                        <Option value="silver">Silver</Option>
+                    </Select>
+                </div>
+                <div className="grow flex flex-col gap-2">
+                    <p className="font-montserrat text-l">Video filter</p>
+                    <Select className="font-montserrat" defaultValue="none" onChange={handleFilterEffectChange}>
+                        <Option value="none">No Filter</Option>
+                        <Option value="vintage">Vintage</Option>
+                        <Option value="hdr">HDR</Option>
+                        <Option value="vignette">Vignette</Option>
+                        <Option value="cinematic">Cinematic</Option>
+                        <Option value="blackandwhite">Black and White</Option>
+                    </Select>
+                </div>
+                <div className="grow flex flex-col gap-2 content-end">
+                    <Button className="font-montserrat h-full bg-white" onClick={() => convertToGif()}>Convert to GIF</Button>
+                </div>
+            </div>
+        </div >
     );
 }
 
