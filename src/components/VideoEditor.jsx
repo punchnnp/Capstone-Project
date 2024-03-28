@@ -65,81 +65,86 @@ function VideoEditor() {
     }, [videoFile])
 
     return (
-        <div>
-            <Spin
-                spinning={processing || !ffmpegLoaded}
-                tip={!ffmpegLoaded ? "Waiting for FFmpeg to load..." : "Processing..."}
-            >
-                <div>
-                    {videoFile ? (
-                        <VideoPlayer
-                            src={URL.createObjectURL(videoFile)}
-                            onPlayerChange={(videoPlayer) => {
-                                setVideoPlayer(videoPlayer)
+        <section className="w-full flex flex-col items-center gap-10 bg-blur max-container">
+        <div className="relative w-full flex flex-col justify-center items-center p-8 bg-white shadow-lg">
+            <h2 className="text-xl font-montserrat text-primary-text mb-6">
+            Edit a Video
+            </h2>
+                <Spin
+                    spinning={processing || !ffmpegLoaded}
+                    tip={!ffmpegLoaded ? "Waiting for FFmpeg to load..." : "Processing..."}
+                >
+                    <div>
+                        {videoFile ? (
+                            <VideoPlayer
+                                src={URL.createObjectURL(videoFile)}
+                                onPlayerChange={(videoPlayer) => {
+                                    setVideoPlayer(videoPlayer)
+                                }}
+                                onChange={(videoPlayerState) => {
+                                    setVideoPlayerState(videoPlayerState)
+                                }}
+                            />
+                        ) : (
+                            <h1>Upload a video</h1>
+                        )}
+                    </div>
+                    <div className={"upload-div"}>
+                        <VideoUpload
+                            disabled={!!videoFile}
+                            onChange={(videoFile) => {
+                                setVideoFile(videoFile)
                             }}
-                            onChange={(videoPlayerState) => {
-                                setVideoPlayerState(videoPlayerState)
+                            onRemove={() => {
+                                setVideoFile(undefined)
                             }}
                         />
-                    ) : (
-                        <h1>Upload a video</h1>
-                    )}
-                </div>
-                <div className={"upload-div"}>
-                    <VideoUpload
-                        disabled={!!videoFile}
-                        onChange={(videoFile) => {
-                            setVideoFile(videoFile)
-                        }}
-                        onRemove={() => {
-                            setVideoFile(undefined)
-                        }}
-                    />
-                </div>
-                <div className={"slider-div"}>
-                    <h3>Cut Video</h3>
-                    <Slider
-                        disabled={!videoPlayerState}
-                        value={sliderValues}
-                        range={true}
-                        onChange={(values) => {
-                            setSliderValues(values)
-                        }}
-                        tooltip={{
-                            formatter: null,
-                        }}
-                    />
-                </div>
-                <div className={"conversion-div"}>
-                    <VideoConversionButton
-                        onConversionStart={() => {
-                            setProcessing(true)
-                        }}
-                        onConversionEnd={() => {
-                            setProcessing(false)
-                        }}
-                        ffmpeg={ffmpeg}
-                        videoPlayerState={videoPlayerState}
-                        sliderValues={sliderValues}
-                        videoFile={videoFile}
-                        overlayImage={overlayImage}
-                        setOverlayImage={setOverlayImage}
-                        onGifCreated={(gifUrl) => {
-                            setGifUrl(gifUrl)
-                        }}
-                    />
-                </div>
-                {gifUrl && (
-                    <div className={"gif-div"}>
-                        <h3>Resulting GIF</h3>
-                        <img src={gifUrl} className={"gif"} alt={"GIF file generated in the client side"} />
-                        <a href={gifUrl} download={"test.gif"} className={"ant-btn ant-btn-default"}>
-                            Download
-                        </a>
                     </div>
-                )}
-            </Spin>
-        </div>
+                    <div className={"slider-div"}>
+                        <h3>Cut Video</h3>
+                        <Slider
+                            disabled={!videoPlayerState}
+                            value={sliderValues}
+                            range={true}
+                            onChange={(values) => {
+                                setSliderValues(values)
+                            }}
+                            tooltip={{
+                                formatter: null,
+                            }}
+                        />
+                    </div>
+                    <div className={"conversion-div"}>
+                        <VideoConversionButton
+                            onConversionStart={() => {
+                                setProcessing(true)
+                            }}
+                            onConversionEnd={() => {
+                                setProcessing(false)
+                            }}
+                            ffmpeg={ffmpeg}
+                            videoPlayerState={videoPlayerState}
+                            sliderValues={sliderValues}
+                            videoFile={videoFile}
+                            overlayImage={overlayImage}
+                            setOverlayImage={setOverlayImage}
+                            onGifCreated={(gifUrl) => {
+                                setGifUrl(gifUrl)
+                            }}
+                        />
+                    </div>
+                    {gifUrl && (
+                        <div className={"gif-div"}>
+                            <h3>Resulting GIF</h3>
+                            <img src={gifUrl} className={"gif"} alt={"GIF file generated in the client side"} />
+                            <a href={gifUrl} download={"test.gif"} className={"ant-btn ant-btn-default"}>
+                                Download
+                            </a>
+                        </div>
+                    )}
+                </Spin>
+            </div>
+        </section>
     )
 }
 
