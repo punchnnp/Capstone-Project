@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import video1 from "../assets/videos/video1.mp4";
-import video2 from "../assets/videos/video2.mp4";
-import video3 from "../assets/videos/video3.mp4";
-import video4 from "../assets/videos/video4.mp4";
-import video5 from "../assets/videos/video5.mp4";
-import { arrowRight, arrowLeft, arrowRightNext } from "../assets/icons";
+import { arrowRight, arrowLeft, arrowRightNext, arrowLeftColor } from "../assets/icons";
 import { RecordNotFound } from "../components";
 import { useNavigate } from "react-router-dom";
 
@@ -25,7 +20,7 @@ const Result2 = () => {
 
     const handleNextButtonClick = () => {
         if (selectedVideo !== null) {
-            navigate("/edit", {state: {videoId: selectedVideo}})
+            navigate("/edit", { state: { videoId: selectedVideo } })
             console.log("Selected video:", selectedVideo);
 
         }
@@ -43,16 +38,19 @@ const Result2 = () => {
         pageNumbers.push(i);
     }
 
-    // // console.log(location.state.videoFiles)
-    // const vid = location.state.videoFiles
-    // const b = vid.vidIDs.map((id) => ({ vidId: id, src: `http://localhost:3001/videos/${id}` }));
-    // // console.log(b)
-    // // console.log("Video files length:", videoFiles.length);
-
     return (
         <section className='w-full min-h-screen gap-10 max-container'>
-            <div className="relative flex flex-col w-full pt-28">
-                <div className="flex flex-rows">
+            <div className="relative flex flex-col w-full pt-28 gap-4">
+                <div className="flex content-center items-center gap-4">
+                        <button
+                            onClick={() => navigate(-1)}
+                            className="flex items-center justify-center w-10 h-10 bg-white border border-primary-text text-primary-text rounded-full">
+                            <img src={arrowLeftColor} alt="back" className="w-[24px] h-[24px]" />
+                        </button>
+                    <h1 className="flex font-montserrat text-primary-text font-semibold text-2xl">Select a video</h1>
+                </div>
+
+                <div className="flex flex-row">
                     <div className="grow flex-col mb-4">
                         <h1 className="grow font-montserrat text-black text-l">
                             <span className="font-semibold">Academic Year: </span>{location.state.year}
@@ -70,7 +68,6 @@ const Result2 = () => {
                         </h1>
                     </div>
                 </div>
-                <h1 className="font-montserrat text-primary-text font-semibold text-2xl">Select a video</h1>
             </div>
             <div className="flex flex-wrap justify-center items-center gap-4 p-4">
                 {currentVideos.length > 0 ? (
@@ -122,20 +119,22 @@ const Result2 = () => {
                     <img src={arrowRightNext} alt="Next" className="w-4 h-4" />
                 </button>
             </div>
-            <div className="fixed z-90 bottom-10 right-8">
-                <button
-                    disabled={selectedVideo === null}
-                    onClick={handleNextButtonClick}
-                    className="flex justify-center items-center gap-2 px-8 py-4 border font-montserrat text-lg leading-none bg-primary-text text-white border-coral-red rounded-full disabled:opacity-75"
-                >
-                    Next
-                    <img
-                        src={arrowRight}
-                        alt="arrow right icon"
-                        className="ml-2 rounded-full bg-white w-5 h-5"
-                    />
-                </button>
-            </div>
+            {videoFiles && videoFiles.length > 0 && (
+                <div className="fixed z-90 bottom-10 right-8">
+                    <button
+                        disabled={selectedVideo === null}
+                        onClick={handleNextButtonClick}
+                        className="flex justify-center items-center gap-2 px-8 py-4 border font-montserrat text-lg leading-none bg-primary-text text-white border-coral-red rounded-full disabled:opacity-75"
+                    >
+                        Next
+                        <img
+                            src={arrowRight}
+                            alt="arrow right icon"
+                            className="ml-2 rounded-full bg-white w-5 h-5"
+                        />
+                    </button>
+                </div>
+            )}
         </section>
     );
 };

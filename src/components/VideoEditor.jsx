@@ -6,9 +6,9 @@ import { sliderValueToVideoTime } from "../utils/utils"
 import VideoUpload from "./VideoUpload"
 import VideoConversionButton from "./VideoConversionButton"
 import { useLocation } from "react-router-dom"
-import { LoadingSection } from "../sections"
 import ModalSuccess from "./modalSuccess"
 import { useNavigate } from "react-router-dom"
+import { arrowLeftColor } from "../assets/icons"
 
 const ffmpeg = createFFmpeg({ log: true })
 
@@ -17,7 +17,7 @@ function VideoEditor() {
     const navigate = useNavigate();
     const videoId = location.state.videoId;
     const videoFile = `http://localhost/api/video/${videoId}`
-    const [ffmpegLoaded, setFFmpegLoaded] = useState(false)
+    const [ffmpegLoaded, setFFmpegLoaded] = useState(ffmpeg.isLoaded());
     // const [videoFile, setVideoFile] = useState()
     const [overlayImage, setOverlayImage] = useState()
     const [videoPlayerState, setVideoPlayerState] = useState()
@@ -38,10 +38,12 @@ function VideoEditor() {
 
     useEffect(() => {
         // loading ffmpeg on startup
-        ffmpeg.load().then(() => {
-            setFFmpegLoaded(true)
-        })
-    }, [])
+        if (!ffmpegLoaded) {
+            ffmpeg.load().then(() => {
+                setFFmpegLoaded(true)
+            })
+        }
+    }, [ffmpegLoaded])
 
     useEffect(() => {
         const min = sliderValues[0]
@@ -85,8 +87,17 @@ function VideoEditor() {
     return (
         <section className='w-full min-h-screen gap-10 max-container'>
             <div className="relative flex flex-col w-full pt-28">
-                <h1 className="font-montserrat text-primary-text font-semibold text-2xl">Edit Video</h1>
-                <p className="font-montserrat text-gray-500 pb-4 text-l">Customize your video! Click Convert to GIF to preview</p>
+                <div className="flex content-center items-center pb-4 gap-4">
+                    <button
+                        onClick={() => navigate(-1)}
+                        className="flex items-center justify-center w-10 h-10 bg-white border border-primary-text text-primary-text rounded-full">
+                        <img src={arrowLeftColor} alt="back" className="w-[24px] h-[24px]" />
+                    </button>
+                    <div className="flex-col items-center">
+                        <h1 className="font-montserrat text-primary-text font-semibold text-2xl">Edit Video</h1>
+                        <p className="font-montserrat text-gray-500 text-l">Customize your video! Click Convert to GIF to preview</p>
+                    </div>
+                </div>
                 <Spin
                     spinning={processing || !ffmpegLoaded}
                     tip={!ffmpegLoaded ? "Waiting for FFmpeg to load..." : "Processing..."}

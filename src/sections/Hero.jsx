@@ -1,12 +1,9 @@
 import { useState } from "react";
 
-import { shoes, statistics, form } from "../constants";
-import { Button, DropDown, ModalUpload, ShoeCard } from "../components";
-import { bigShoe1 } from "../assets/images";
-import { arrowRight, chevronDown } from "../assets/icons";
+import { ModalUpload } from "../components";
+import { arrowRight } from "../assets/icons";
 
 const Hero = () => {
-  const [bigShoeImg, setBigShoeImg] = useState(bigShoe1);
   const [showModal, setShowModal] = useState(false);
 
   return (

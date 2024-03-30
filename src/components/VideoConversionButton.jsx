@@ -52,7 +52,7 @@ function VideoConversionButton({
         const centerX = `(w - ${textWidth}) / 2`;
 
         // Construct the text overlay filter
-        const textOverlayFilter = `drawtext=fontfile=/${fontFileName}:text='${text}':x=${centerX}:y=10:fontsize=${fontSize}:fontcolor=${fontColor}:box=1:boxcolor=white@1:boxborderw=10`;
+        const textOverlayFilter = `drawtext=fontfile=/${fontFileName}:text='${text}':x=${centerX}:y=20:fontsize=${fontSize}:fontcolor=${fontColor}:box=1:boxcolor=white@1:boxborderw=10`;
 
         // Apply selected filter effect
         let filterEffectCommand = "";
@@ -110,7 +110,7 @@ function VideoConversionButton({
                     </Select>
                 </div>
                 <div className="grow flex flex-col gap-2">
-                    <p className="font-montserrat text-l">Font color</p>
+                    <p className="font-montserrat text-l">Text color</p>
                     <Select className="font-montserrat" defaultValue="black" onChange={handleFontColorChange}>
                         <Option value="black">Black</Option>
                         <Option value="red">Red</Option>
